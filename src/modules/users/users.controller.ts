@@ -35,7 +35,10 @@ export class UsersController {
   @UseGuards(AuthGuard('jwt'))
   @Get(':id')
   findOne(@Param('id', new ParseUUIDPipe()) id: string) {
-    return this.usersService.findOneOrFail({ id });
+    return this.usersService.findOneOrFail(
+      { id },
+      { select: ['id', 'firstName', 'lastName', 'email', 'createdAt'] },
+    );
   }
 
   @UseGuards(AuthGuard('jwt'))
