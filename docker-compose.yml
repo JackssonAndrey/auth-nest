@@ -3,7 +3,7 @@ version: '3.8'
 services:
   db:
     image: postgres
-    container_name: nestjs-pg
+    container_name: auth-nestjs-pg
     volumes:
       - pgdata:/data/postgres
     restart: always
@@ -16,7 +16,7 @@ services:
       POSTGRES_USER: '${DATABASE_USER}'
 
   api:
-    container_name: 'nestjs'
+    container_name: 'auth-nestjs'
     build: .
     command: bash -c 'yarn start:dev'
     env_file: .env
